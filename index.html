@@ -96,18 +96,36 @@
       font-size: 0.9rem;
       text-shadow: 1px 1px 2px #000;
     }
+
+    /* Play button styling */
+    #playButton {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1000;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: rgba(255, 255, 255, 0.8);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: none;
+    }
   </style>
 </head>
 <body>
 
   <!-- Background Music -->
-  <audio autoplay loop>
+  <audio id="bg-music" loop>
     <source src="background-music.mp3" type="audio/mp3">
     Your browser does not support the audio element.
   </audio>
 
+  <!-- Play Button -->
+  <button id="playButton">▶ Play Music</button>
+
   <div class="background" id="background">
-    <!-- Replace with your actual photo filenames -->
     <img src="photo1.jpg" alt="">
     <img src="photo2.jpg" alt="">
     <img src="photo3.jpg" alt="">
@@ -137,49 +155,44 @@
   </footer>
 
   <script>
-    // List of image sources
     const images = [
-      "photo1.jpg",
-      "photo2.jpg",
-      "photo3.jpg",
-      "photo4.jpg",
-      "photo5.jpg",
-      "photo6.jpg",
-      "photo7.jpg",
-      "photo8.jpg",
-      "photo9.jpg",
-      "photo10.jpg",
-      "photo11.jpg",
-      "photo12.jpg"
+      "photo1.jpg", "photo2.jpg", "photo3.jpg", "photo4.jpg", "photo5.jpg", "photo6.jpg",
+      "photo7.jpg", "photo8.jpg", "photo9.jpg", "photo10.jpg", "photo11.jpg", "photo12.jpg"
     ];
 
-    // Function to randomize images every 5 seconds
-     
     function randomizeImages() {
       const imageElements = document.querySelectorAll('.background img');
       const parent = document.querySelector('.background');
-
-      // Fade out effect
       parent.style.opacity = '0';
-
-      // After the fade-out is complete (2s duration), shuffle images
       setTimeout(() => {
-        // Randomize images by selecting a random image for each slot
         imageElements.forEach((img) => {
           const randomIndex = Math.floor(Math.random() * images.length);
           img.src = images[randomIndex];
         });
-
-        // Fade-in effect
         parent.style.opacity = '1';
-      }, 2000); // Wait for fade-out to finish before randomizing (2s)
+      }, 2000);
     }
 
-    // Shuffle images every 10 seconds
     setInterval(randomizeImages, 60000);
-
-    // Initial randomization when page loads
     randomizeImages();
+
+    // Music autoplay handling
+    const audio = document.getElementById('bg-music');
+    const playButton = document.getElementById('playButton');
+
+    window.addEventListener('DOMContentLoaded', () => {
+      audio.play().catch(() => {
+        playButton.style.display = 'block';
+      });
+    });
+
+    playButton.addEventListener('click', () => {
+      audio.play().then(() => {
+        playButton.style.display = 'none';
+      }).catch((err) => {
+        console.log("Playback failed:", err);
+      });
+    });
   </script>
 
 </body>

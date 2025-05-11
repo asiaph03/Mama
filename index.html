@@ -11,17 +11,18 @@
       box-sizing: border-box;
     }
 
-    body, html {
-      height: 100%;
+    html, body {
+      height: 100vh;
       font-family: 'Segoe UI', sans-serif;
       color: white;
       overflow: hidden;
+      position: relative;
     }
 
     .background {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      grid-auto-rows: 100px;
+      grid-auto-rows: minmax(100px, 1fr);
       gap: 5px;
       position: absolute;
       top: 0; left: 0;
@@ -173,7 +174,7 @@
       }, 2000);
     }
 
-    setInterval(randomizeImages, 5000);
+    setInterval(randomizeImages, 60000);
     randomizeImages();
 
     // Music autoplay handling

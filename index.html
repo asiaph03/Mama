@@ -113,6 +113,48 @@
       cursor: pointer;
       display: none;
     }
+
+    /* Responsive styling for mobile */
+    @media (max-width: 768px) {
+      .background {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns for tablets */
+        grid-auto-rows: minmax(150px, 1fr); /* Increase row size for better layout */
+      }
+
+      h1 {
+        font-size: 2.5rem; /* Smaller font size on mobile */
+      }
+
+      p {
+        font-size: 1.1rem; /* Smaller font size on mobile */
+      }
+
+      #playButton {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Further responsive styling for very small screens (mobile phones) */
+    @media (max-width: 480px) {
+      .background {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for small mobile screens */
+        grid-auto-rows: minmax(200px, 1fr); /* Adjust row size further */
+      }
+
+      h1 {
+        font-size: 2rem; /* Even smaller font size */
+      }
+
+      p {
+        font-size: 1rem; /* Adjust paragraph font size */
+      }
+
+      footer {
+        font-size: 0.8rem; /* Smaller footer text */
+      }
+    }
+
   </style>
 </head>
 <body>

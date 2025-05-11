@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Mother's Day</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      overflow: hidden;
+    }
+
+    .background {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-auto-rows: 100px;
+      gap: 5px;
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      opacity: 1;
+      transition: opacity 2s ease-in-out;
+    }
+
+    .background img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    /* Custom layout using nth-child */
+    .background img:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .background img:nth-child(2) { grid-column: span 1; grid-row: span 1; }
+    .background img:nth-child(3) { grid-column: span 3; grid-row: span 2; }
+    .background img:nth-child(4) { grid-column: span 2; grid-row: span 1; }
+    .background img:nth-child(5) { grid-column: span 2; grid-row: span 2; }
+    .background img:nth-child(6) { grid-column: span 1; grid-row: span 1; }
+    .background img:nth-child(7) { grid-column: span 2; grid-row: span 1; }
+    .background img:nth-child(8) { grid-column: span 2; grid-row: span 1; }
+    .background img:nth-child(9) { grid-column: span 3; grid-row: span 1; }
+    .background img:nth-child(10) { grid-column: span 1; grid-row: span 2; }
+    .background img:nth-child(11) { grid-column: span 2; grid-row: span 2; }
+    .background img:nth-child(12) { grid-column: span 3; grid-row: span 1; }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.4);
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .message-container {
+      position: relative;
+      z-index: 10;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 5px #000;
+    }
+
+    p {
+      font-size: 1.3rem;
+      max-width: 600px;
+      line-height: 1.6;
+      text-shadow: 1px 1px 4px #000;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 1rem;
+      width: 100%;
+      text-align: center;
+      color: #ddd;
+      font-size: 0.9rem;
+      text-shadow: 1px 1px 2px #000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Music -->
+  <audio autoplay loop>
+    <source src="background-music.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="background" id="background">
+    <!-- Replace with your actual photo filenames -->
+    <img src="photo1.jpg" alt="">
+    <img src="photo2.jpg" alt="">
+    <img src="photo3.jpg" alt="">
+    <img src="photo4.jpg" alt="">
+    <img src="photo5.jpg" alt="">
+    <img src="photo6.jpg" alt="">
+    <img src="photo7.jpg" alt="">
+    <img src="photo8.jpg" alt="">
+    <img src="photo9.jpg" alt="">
+    <img src="photo10.jpg" alt="">
+    <img src="photo11.jpg" alt="">
+    <img src="photo12.jpg" alt="">
+  </div>
+
+  <div class="overlay"></div>
+
+  <div class="message-container">
+    <h1>Happy Mother's Day ❤️</h1>
+    <p>
+      Thank you for all the love, laughter, and lessons you've given me. You're the heart of our family and the light of my life.
+      This collage is just a glimpse of how much you mean to me. I love you, always.
+    </p>
+  </div>
+
+  <footer>
+    Made with love ❤️ for Mom
+  </footer>
+
+  <script>
+    // List of image sources
+    const images = [
+      "photo1.jpg",
+      "photo2.jpg",
+      "photo3.jpg",
+      "photo4.jpg",
+      "photo5.jpg",
+      "photo6.jpg",
+      "photo7.jpg",
+      "photo8.jpg",
+      "photo9.jpg",
+      "photo10.jpg",
+      "photo11.jpg",
+      "photo12.jpg"
+    ];
+
+    // Function to randomize images every 5 seconds
+     
+    function randomizeImages() {
+      const imageElements = document.querySelectorAll('.background img');
+      const parent = document.querySelector('.background');
+
+      // Fade out effect
+      parent.style.opacity = '0';
+
+      // After the fade-out is complete (2s duration), shuffle images
+      setTimeout(() => {
+        // Randomize images by selecting a random image for each slot
+        imageElements.forEach((img) => {
+          const randomIndex = Math.floor(Math.random() * images.length);
+          img.src = images[randomIndex];
+        });
+
+        // Fade-in effect
+        parent.style.opacity = '1';
+      }, 2000); // Wait for fade-out to finish before randomizing (2s)
+    }
+
+    // Shuffle images every 10 seconds
+    setInterval(randomizeImages, 10000);
+
+    // Initial randomization when page loads
+    randomizeImages();
+  </script>
+
+</body>
+</html>
